@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.library-container{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.book-card{
+    padding: 10px;
+    margin: 10px;
+    background-color: aquamarine;
+    border-radius: 5px;
+}
+
+.book-card h2{
+    text-align: center;
+    font-size: 2em;
+}
+
+.book-card h3{
+    text-align: center;
+    font-style: italic;
+}
+
+.book-card h4{
+    padding-bottom: 5px;
+}
+
+.book-card p{
+
+}
