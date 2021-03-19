@@ -10,27 +10,26 @@ const read = document.getElementById("read");
 const addBook = document.getElementById("add-book");
 const form = document.getElementById("form");
 
-const cardDeleteButtons = document.getElementsByClassName("delete-card");
-
-
-
 function deleteCard(card){
     myLibrary.splice(card.target.parentNode.dataset.index, 1);
     booksToDom();
+    setLocalStorage();
 }
 
 function changeReadStatus(card){
-    console.log(card.target.parentNode.parentNode.dataset.index);
     myLibrary[card.target.parentNode.parentNode.dataset.index].readBook();
+    setLocalStorage();
 }
 
 let myLibrary = [];
+
+checkIfLocalStorage();
 
 // Book Constructor
 
 function Book(title, author, pages, desc, read) {
     this.title = title;
-    this.author = author;
+    this.author = author
     this.pages = pages;
     this.desc = desc;
     this.read = read;
@@ -40,7 +39,7 @@ function Book(title, author, pages, desc, read) {
         } else{
             this.read = true
         }
-    };
+    }
 }
 
 function booksToDom(){
@@ -55,6 +54,7 @@ function booksToDom(){
 function addBookToLibrary(book){
     myLibrary.push(book);
     booksToDom();
+    setLocalStorage();
 }
 
 function createBookCard(book, serialNumber){
@@ -86,18 +86,21 @@ function createBookCard(book, serialNumber){
     readContainer.appendChild(readLabel);
     readContainer.appendChild(read);
     
-    const close = document.createElement("span");
-    close.classList.add("delete-card");
+    const deleteContainer = document.createElement("div");
+    const deleteBook = document.createElement("svg");
+    deleteBook.classList.add("fas");
+    deleteBook.classList.add("fa-times");
 
-    close.addEventListener("click", deleteCard);
+    deleteContainer.addEventListener("click", deleteCard);
 
-    close.innerHTML = "&times";
+    deleteContainer.appendChild(deleteBook);
+
     title.innerText = book.title;
     author.innerText = book.author;
     pages.innerText = `Pages: ${book.pages}`;
     desc.innerText = book.desc;
 
-    newContainer.appendChild(close);
+    newContainer.appendChild(deleteContainer);
     newContainer.appendChild(title);
     newContainer.appendChild(author);
     newContainer.appendChild(pages);
@@ -143,4 +146,26 @@ function outsideClick(e){
         modal.style.display = "none";
     }
     
+}
+
+// LOCAL STORAGE   
+
+function setLocalStorage(){
+    localStorage.clear();
+    myLibrary.forEach((book, index) => {
+        localStorage.setItem(index, JSON.stringify(book));
+    });
+}
+
+function checkIfLocalStorage(){
+    if(localStorage.getItem("0") === null){
+
+    } else{
+        for(let i = 0; i<localStorage.length; i++){
+            let book = JSON.parse(localStorage.getItem(i))
+            let createBook = new Book(book.title, book.author, book.pages, book.desc, book.read);
+            myLibrary.push(createBook);
+        }
+    }
+    booksToDom();
 }

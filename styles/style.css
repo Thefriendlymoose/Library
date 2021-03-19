@@ -49,10 +49,10 @@ body {
     width: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .form-container{
-    z-index: 1;
     display: flex;
     flex-direction: column;
     background-color: #9393B6;
@@ -90,15 +90,28 @@ body {
     padding: 10px;
     background-color: #577DBA;
     border-radius: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.book-card div svg{
+    position: absolute;
+    top: 0.3em;
+    left: 0.4em;
+    padding: 0;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.book-card div svg:hover{
+    color: #c9c9c9;
 }
 
 .book-card h2{
-    text-align: center;
     font-size: 2em;
 }
 
 .book-card h3{
-    text-align: center;
     font-style: italic;
 }
 
