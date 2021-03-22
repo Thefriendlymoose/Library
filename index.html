@@ -21,22 +21,25 @@
             <button id="show-form" class="add-new">Add New Book</button>
             <div class="modal" id="modal">
                 <form id="form" class="form-container">
-                    <span class="close-btn" id="close-btn"><i class="fas fa-times"></i></span>
+                    <div id="close-btn" class="close-container">
+                        <i class="close-btn fas fa-times"></i>
+                    </div>
+                   
 
                     <label for="title">Name of book:</label>
-                    <input type="text" id="title" name="title" required>
+                    <input type="text" id="title" name="title" maxlength="70" required>
                     
                     <label for="author">Author</label>
-                    <input type="text" id="author" name="author" required>
+                    <input type="text" id="author" name="author" maxlength="50" required>
                     
                     <label for="pages">Pages</label>
-                    <input type="number" id="pages" name="pages" required>
+                    <input type="number" id="pages" name="pages" max="100000" required>
             
                     <label for="read">Read</label>
                     <input type="checkbox" id="read" name="read">
             
                     <label for="desc">Description</label>
-                    <textarea id="desc" name="desc" required></textarea>
+                    <textarea id="desc" name="desc" maxlength="500" required></textarea>
                     <button type="submit" id="add-book">Submit</button>
                 </form>
             </div>

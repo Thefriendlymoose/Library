@@ -73,7 +73,8 @@ function createBookCard(book, serialNumber){
     read.name = "bookread" + serialNumber;
     read.id = "bookread" + serialNumber;
     readLabel.htmlFor = "bookread" + serialNumber;
-    readLabel.textContent = "Book Read: ";
+    readLabel.textContent = "Read: ";
+    readContainer.classList.add("card-read");
 
     if(book.read){
         read.checked = true;
